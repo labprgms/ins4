@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Copy Text Box</title>
+</head>
+<body>
+
+<textarea id="text-to-copy" rows="4" cols="50">PG 04
+
+    #include<stdio.h>
+    #include<string.h>
+    void main()
+    {
+      char pt[50], ct[50], dt[50];
+      int key, len, i;
+      printf ("Enter Message to be Encrypted\n");
+      scanf ("%s", pt);
+      len=strlen(pt);
+      printf("Enter Key");
+      scanf("%d",&key);
+      if(key>26)
+      {
+          printf("Please Enter Valid Key:\n");
+      }
+      for(i=0;i<len;i++)
+      {
+          ct[i]=pt[i]+key;
+          if(ct[i]>122)
+          ct[i]=ct[i]-26;
+      }
+      ct[i]='\0';
+      printf("Encrypted Msg is : %s\n",ct);
+      for(i=0;i<len;i++)
+      {
+          dt[i]=ct[i]-key;
+          if(dt[i]<97)
+          dt[i]=dt[i]+26;
+      }
+        dt[i]='\0';
+      printf("Decrypted Msg is : %s",dt);
+    } </textarea><br>
+
+<button onclick="copyText()">Copy Text</button>
+
+<script>
+function copyText() {
+  /* Get the text field */
+  var copyText = document.getElementById("text-to-copy");
+
+  /* Select the text field */
+  copyText.select();
+  copyText.setSelectionRange(0, 99999); /* For mobile devices */
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Copied the text: " + copyText.value);
+}
+</script>
+
+</body>
+</html>
